@@ -8,8 +8,27 @@
       content="GreenNest Poultry Farm in Rarieda, Siaya County offers fresh eggs, broilers, chicks,
    and organic manure."
     />
+    <meta name="keywords" content="GreenNest, Poultry, Eggs, Broilers, Chicks, Organic Manure, Siaya, Kenya, Farm, Fresh" />
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="GreenNest Poultry Farm" />
+    <link rel="canonical" href="https://yourdomain.com/" />
+    <!-- Schema.org markup for Google+ -->
+    <meta itemprop="name" content="GreenNest Poultry Farm | Fresh Eggs & Poultry Products">
+    <meta itemprop="description" content="GreenNest Poultry Farm in Rarieda, Siaya County offers fresh eggs, broilers, chicks, and organic manure.">
+    <meta itemprop="image" content="images/GeenNestlogo.png">
+    <meta property="og:title" content="GreenNest Poultry Farm | Fresh Eggs & Poultry Products" />
+    <meta property="og:description" content="GreenNest Poultry Farm in Rarieda, Siaya County offers fresh eggs, broilers, chicks, and organic manure." />
+    <meta property="og:image" content="images/GeenNestlogo.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://yourdomain.com/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="GreenNest Poultry Farm | Fresh Eggs & Poultry Products" />
+    <meta name="twitter:description" content="GreenNest Poultry Farm in Rarieda, Siaya County offers fresh eggs, broilers, chicks, and organic manure." />
+    <meta name="twitter:image" content="images/GeenNestlogo.png" />
     <title>GreenNest Poultry Farm | Fresh Eggs & Poultry Products</title>
-    <link rel="icon" type="image/png" href="./favicon.png" />
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" crossorigin="anonymous" />
     <style>
       body {
         font-family: Arial, sans-serif;
@@ -120,13 +139,64 @@
           grid-template-columns: 1fr;
         }
       }
+      .error-message {
+  color: #d32f2f;
+  font-size: 0.9em;
+  margin-bottom: 0.5em;
+  display: block;
+}
+.form-group {
+  margin-bottom: 1em;
+}
+button, input, textarea {
+  font-size: 1.1em;
+}
+@media (max-width: 600px) {
+  button, input, textarea {
+    font-size: 1.2em;
+    padding: 1em;
+  }
+}
+#testimonial-carousel {
+  position: relative;
+  min-height: 80px;
+}
+.testimonial {
+  display: none;
+  transition: opacity 0.5s;
+}
+.testimonial.active {
+  display: block;
+  opacity: 1;
+}
+#prevTestimonial, #nextTestimonial {
+  background: #40916c;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 2.2em;
+  height: 2.2em;
+  font-size: 1.2em;
+  margin: 0 0.5em;
+  cursor: pointer;
+}
+#prevTestimonial:focus, #nextTestimonial:focus {
+  outline: 2px solid #1877f3;
+}
     </style>
     <script src="https://checkout.flutterwave.com/v3.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-26YLJLGDFS"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-26YLJLGDFS');
+</script>
   </head>
   <body>
     <header>
       <img
-        src="GeenNestlogo.png"
+        src="images/GeenNestlogo.png"
         alt="GreenNest Poultry Farm Logo"
         style="height: 80px; margin-bottom: 0.5rem;"
       />
@@ -159,47 +229,66 @@
       <section id="gallery" class="section card">
         <h2>Gallery</h2>
         <div class="gallery">
-          <img src="FreshEgg.webp" alt="Basket of fresh eggs" loading="lazy" />
-          <img src="Chicks.jpeg" alt="One day old chicks" loading="lazy" />
-          <img src="BroilerChicken.jpeg" alt="Healthy broiler chicken" loading="lazy" />
+          <img src="images/FreshEgg.webp" srcset="images/FreshEgg.webp 1x, images/FreshEgg@2x.webp 2x" alt="Basket of fresh eggs" loading="lazy" />
+          <img src="images/Chicks.jpeg" srcset="images/Chicks.jpeg 1x, images/Chicks@2x.jpeg 2x" alt="One day old chicks" loading="lazy" />
+          <img src="images/BroilerChicken.jpeg" srcset="images/BroilerChicken.jpeg 1x, images/BroilerChicken@2x.jpeg 2x" alt="Healthy broiler chicken" loading="lazy" />
         </div>
       </section>
       <section id="order" class="section card">
         <h2>Order Form</h2>
-        <form id="orderForm">
-          <input
-            type="text"
-            id="name"
-            name="name"
-            placeholder="Your Name"
-            required
-          />
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Your Email"
-            required
-          />
-          <input
-            type="text"
-            id="product"
-            name="product"
-            placeholder="Product (e.g. Eggs, Chicks)"
-            required
-          />
-          <textarea
-            name="message"
-            rows="4"
-            placeholder="Quantity or special request..."
-          ></textarea>
-          <input
-            type="number"
-            id="amount"
-            name="amount"
-            placeholder="Amount in KES"
-            required
-          />
+        <form id="orderForm" novalidate>
+          <div class="form-group">
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Your Name"
+              required
+              aria-label="Your Name"
+            />
+            <span class="error-message" id="name-error"></span>
+          </div>
+          <div class="form-group">
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Your Email"
+              required
+              aria-label="Your Email"
+            />
+            <span class="error-message" id="email-error"></span>
+          </div>
+          <div class="form-group">
+            <input
+              type="text"
+              id="product"
+              name="product"
+              placeholder="Product (e.g. Eggs, Chicks)"
+              required
+              aria-label="Product"
+            />
+            <span class="error-message" id="product-error"></span>
+          </div>
+          <div class="form-group">
+            <textarea
+              name="message"
+              rows="4"
+              placeholder="Quantity or special request..."
+              aria-label="Order Details"
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <input
+              type="number"
+              id="amount"
+              name="amount"
+              placeholder="Amount in KES"
+              required
+              aria-label="Amount in KES"
+            />
+            <span class="error-message" id="amount-error"></span>
+          </div>
           <button type="button" onclick="saveOrderToFirebase(); validateAndPay();">Pay Online</button>
           <button type="button" onclick="showMpesa()" style="margin-top: 0.5rem; background-color: #4CAF50;">Pay via M-Pesa</button>
           <div id="mpesa-details">
@@ -210,52 +299,135 @@
       </section>
       <section id="testimonials" class="section card">
         <h2>Testimonials</h2>
-        <blockquote>
-          "I always get fresh eggs from GreenNest. Highly reliable!" – Mary,
-          Bondo
-        </blockquote>
-        <blockquote>
-          "Their broilers are the healthiest I've seen. Great service." –
-          Otieno, Kisumu
-        </blockquote>
+        <div id="testimonial-carousel">
+          <blockquote class="testimonial active">"I always get fresh eggs from GreenNest. Highly reliable!" – Mary, Bondo</blockquote>
+          <blockquote class="testimonial">"Their broilers are the healthiest I've seen. Great service." – Otieno, Kisumu</blockquote>
+          <blockquote class="testimonial">"GreenNest all the time, thanks for your products." – Mukila, Machakos</blockquote>
+        </div>
+        <button id="prevTestimonial" aria-label="Previous testimonial">&lt;</button>
+        <button id="nextTestimonial" aria-label="Next testimonial">&gt;</button>
       </section>
-
       <section id="contact" class="section card">
         <h2>Contact Us</h2>
         <p>Location: Rarieda, Siaya County</p>
         <p>Phone: +254769716372</p>
         <p>Email: abisainyamwanda76@gmail.com</p>
         <div class="social-icons">
-          <a href="https://wa.me/254769716372" aria-label="WhatsApp">WhatsApp</a>
-          <a href="https://facebook.com/yourpage" aria-label="Facebook">Facebook</a>
+          <a href="https://wa.me/254769716372" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://facebook.com/yourpage" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
         </div>
       </section>
+      <section id="faq" class="section card">
+  <h2>Frequently Asked Questions</h2>
+  <details>
+    <summary>What products do you offer?</summary>
+    <p>We offer fresh eggs, broilers, chicks, and organic manure.</p>
+  </details>
+  <details>
+    <summary>How do I pay for my order?</summary>
+    <p>You can pay online using card, M-Pesa, or bank transfer via Flutterwave, or pay directly via M-Pesa.</p>
+  </details>
+  <details>
+    <summary>How do I contact you?</summary>
+    <p>Use the contact form below or reach us via WhatsApp or Facebook.</p>
+  </details>
+  <details>
+    <summary>Where are you located?</summary>
+    <p>Rarieda, Siaya County, Kenya.</p>
+  </details>
+</section>
+      <section id="contactform" class="section card">
+  <h2>General Contact Form</h2>
+  <form id="generalContactForm" novalidate>
+    <div class="form-group">
+      <input
+        type="text"
+        id="contact-name"
+        name="contact-name"
+        placeholder="Your Name"
+        required
+        aria-label="Your Name"
+      />
+      <span class="error-message" id="contact-name-error"></span>
+    </div>
+    <div class="form-group">
+      <input
+        type="email"
+        id="contact-email"
+        name="contact-email"
+        placeholder="Your Email"
+        required
+        aria-label="Your Email"
+      />
+      <span class="error-message" id="contact-email-error"></span>
+    </div>
+    <div class="form-group">
+      <textarea
+        id="contact-message"
+        name="contact-message"
+        rows="4"
+        placeholder="Your Message"
+        required
+        aria-label="Your Message"
+      ></textarea>
+      <span class="error-message" id="contact-message-error"></span>
+    </div>
+    <button type="submit">Send Message</button>
+  </form>
+</section>
     </div>
     <footer>
       <p>&copy; 2025 GreenNest Poultry Farm. All rights reserved.</p>
     </footer>
     <script>
-      const FLW_PUBLIC_KEY = "FLWPUBK_TEST-53ba0cd5a03784c23ed6c2f2353827b3-X"; 
-      
+     const FLW_PUBLIC_KEY = "FLWPUBK_TEST-53ba0cd5a03784c23ed6c2f2353827b3-X"; 
       function showMpesa() {
+        if (!validateFormFields()) return;
         const amount = document.getElementById("amount").value;
         if (!amount || isNaN(amount)) {
-          alert("Please enter a valid amount first");
+          showToast('error', "Please enter a valid amount first");
           return;
         }
-        document.getElementById("mpesa-amount").textContent = amount;
-        document.getElementById("mpesa-details").style.display = "block";
+        // Prompt for phone number
+        const phone = prompt("Enter your M-Pesa phone number (format: 2547XXXXXXXX):");
+        if (!phone || !/^2547\d{8}$/.test(phone.trim())) {
+          showToast('error', "Please enter a valid phone number in the format 2547XXXXXXXX");
+          return;
+        }
+        // Launch Flutterwave modal with only M-Pesa option and the entered phone number
+        FlutterwaveCheckout({
+          public_key: FLW_PUBLIC_KEY,
+          tx_ref: "GNF-" + Date.now(),
+          amount: amount,
+          currency: "KES",
+          payment_options: "mpesa",
+          customer: {
+            email: document.getElementById("email").value || "customer@example.com",
+            name: document.getElementById("name").value || "Customer",
+            phone_number: phone,
+          },
+          callback: function (data) {
+            showToast('success', 'Thank you for your payment! Transaction Ref: ' + data.tx_ref);
+            window.location.href = `/thank-you.html?tx_id=${data.transaction_id}`;
+          },
+          onclose: function () {
+            document.body.style.cursor = "default";
+          },
+          customizations: {
+            title: "GreenNest Poultry Farm",
+            description: `Payment for ${document.getElementById("product").value}`,
+            logo: "images/GeenNestlogo.png",
+          },
+        });
       }
-
       function validateAndPay() {
+        if (!validateFormFields()) return;
         const name = document.getElementById("name").value;
         const email = document.getElementById("email").value;
         const amount = document.getElementById("amount").value;
         const product = document.getElementById("product").value;
-
-    
         if (!name || !email.includes("@") || !amount || isNaN(amount)) {
-          alert("Please fill all fields correctly!");
+          showToast('error', "Please fill all fields correctly!");
           return;
         }
         document.body.style.cursor = "wait";
@@ -271,7 +443,7 @@
             phone_number: "+254769716372",
           },
           callback: function (data) {
-            alert("Thank you for your payment! Transaction Ref: " + data.tx_ref);
+            showToast('success', 'Thank you for your payment! Transaction Ref: ' + data.tx_ref);
             window.location.href = `/thank-you.html?tx_id=${data.transaction_id}`;
           },
           onclose: function() {
@@ -280,10 +452,43 @@
           customizations: {
             title: "GreenNest Poultry Farm",
             description: `Payment for ${product}`,
-            logo: "GeenNestlogo.png",
+            logo: "images/GeenNestlogo.png",
           },
         });
       }
+      function showError(field, message) {
+  document.getElementById(field + '-error').textContent = message;
+}
+function clearErrors() {
+  ['name', 'email', 'product', 'amount'].forEach(function(field) {
+    document.getElementById(field + '-error').textContent = '';
+  });
+}
+function validateFormFields() {
+  clearErrors();
+  let valid = true;
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const product = document.getElementById('product').value.trim();
+  const amount = document.getElementById('amount').value.trim();
+  if (!name) {
+    showError('name', 'Name is required.');
+    valid = false;
+  }
+  if (!email || !email.includes('@')) {
+    showError('email', 'Valid email is required.');
+    valid = false;
+  }
+  if (!product) {
+    showError('product', 'Product is required.');
+    valid = false;
+  }
+  if (!amount || isNaN(amount) || Number(amount) <= 0) {
+    showError('amount', 'Enter a valid amount.');
+    valid = false;
+  }
+  return valid;
+}
       document.getElementById("orderForm").addEventListener("submit", function(e) {
         e.preventDefault();
         const formData = {
@@ -328,11 +533,98 @@
         amount,
         createdAt: new Date().toISOString()
       });
-      console.log("✅ Order saved to Firebase.");
+      console.log("Order saved to Firebase.");
     } catch (error) {
-      console.error("❌ Error saving to Firebase:", error);
+      console.error("Error saving to Firebase:", error);
     }
   };
 </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" crossorigin="anonymous"></script>
+    <script>
+      function showToast(type, message) {
+  if (window.toastr) {
+    toastr.options = { positionClass: 'toast-bottom-right', timeOut: 4000 };
+    toastr[type](message);
+  } else {
+    alert(message);
+  }
+}
+    </script>
+    <script>
+      document.getElementById('generalContactForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  let valid = true;
+  const name = document.getElementById('contact-name').value.trim();
+  const email = document.getElementById('contact-email').value.trim();
+  const message = document.getElementById('contact-message').value.trim();
+  document.getElementById('contact-name-error').textContent = '';
+  document.getElementById('contact-email-error').textContent = '';
+  document.getElementById('contact-message-error').textContent = '';
+  if (!name) {
+    document.getElementById('contact-name-error').textContent = 'Name is required.';
+    valid = false;
+  }
+  if (!email || !email.includes('@')) {
+    document.getElementById('contact-email-error').textContent = 'Valid email is required.';
+    valid = false;
+  }
+  if (!message) {
+    document.getElementById('contact-message-error').textContent = 'Message is required.';
+    valid = false;
+  }
+  if (!valid) return;
+  showToast('success', 'Thank you for contacting us! We will get back to you soon.');
+  document.getElementById('generalContactForm').reset();
+});
+    </script>
+    <script>
+(function() {
+  const testimonials = document.querySelectorAll('.testimonial');
+  let current = 0;
+  function showTestimonial(idx) {
+    testimonials.forEach((el, i) => {
+      el.classList.toggle('active', i === idx);
+    });
+  }
+  document.getElementById('prevTestimonial').onclick = function() {
+    current = (current - 1 + testimonials.length) % testimonials.length;
+    showTestimonial(current);
+  };
+  document.getElementById('nextTestimonial').onclick = function() {
+    current = (current + 1) % testimonials.length;
+    showTestimonial(current);
+  };
+  showTestimonial(current);
+})();
+    </script>
+<!-- NOTE: Ensure all @2x images (e.g., FreshEgg@2x.webp) are uploaded to the images/ folder for retina/HiDPI support. -->
+<!-- Add structured data for business info -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "GreenNest Poultry Farm",
+      "image": "https://yourdomain.com/images/GeenNestlogo.png",
+      "@id": "https://yourdomain.com/",
+      "url": "https://yourdomain.com/",
+      "telephone": "+254769716372",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Rarieda",
+        "addressLocality": "Siaya County",
+        "addressCountry": "KE"
+      },
+      "description": "GreenNest Poultry Farm in Rarieda, Siaya County offers fresh eggs, broilers, chicks, and organic manure.",
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "-0.0617",
+        "longitude": "34.2886"
+      },
+      "sameAs": [
+        "https://wa.me/254769716372",
+        "https://facebook.com/yourpage"
+      ]
+    }
+    </script>
   </body>
 </html>
